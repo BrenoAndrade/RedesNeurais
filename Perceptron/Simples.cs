@@ -37,11 +37,21 @@ namespace Perceptron
 
                     int valorY= Y(entradas);
 
-                    Console.WriteLine("E1: " + entradas[1] + "  E2: " + entradas[2] + "  : " + valorY + " ---> " + desejado[k]);
-                    Console.WriteLine("W1: " + Pesos[1] + "   W2: " + Pesos[2] + "\n");
+                    for (int i = 1; i <= quantidadeEntradas; i++)
+                    {
+                        Console.Write("E" + i +": " + entradas[i] + "\t");
+                    }
+
+                    Console.Write("Y:" + valorY + " ---> " + desejado[k] + "\n");
+
+                    for (int i = 1; i <= quantidadeEntradas; i++)
+                    {
+                        Console.Write("W" + i + ": " + Pesos[i] + "\t");
+                    }
+
+                    Console.Write("\n\n");
 
                     treinou = valorY == desejado[k] ? true : false;
-
                     float erro = desejado[k] - valorY;
                                         
                     if(erro != 0)
@@ -52,14 +62,14 @@ namespace Perceptron
                         }
                         treinou = false;
                         k = -1;
-                        Console.WriteLine("--------PESOS RECALCULADOS---------");
+                        Console.WriteLine("-------- PESOS RECALCULADOS ---------");
                     }
                         
                 }          
                 
-                Console.WriteLine("-------FIM ITERACAO----------");
+                Console.WriteLine("------- FIM ITERACAO ----------");
             }
-            Console.WriteLine("SAIU");
+            Console.WriteLine("GG");
         }
 
         private int Y(int[] entradas)
