@@ -6,7 +6,7 @@ namespace Perceptron
     public class Simples
     {
         private Random NumeroAleatorio = new Random();
-        private float[] Pesos;
+        public float[] Pesos;
 
         private int quantidadeEntradas;
         private int min = -1;
@@ -26,7 +26,7 @@ namespace Perceptron
         {
             while (!treinou)
             {
-                for (int k = 0; k <= 3; k++) //AND
+                for (int k = 0; k <= 4; k++) //AND
                 {
                     int[] entradas = new int[quantidadeEntradas + 1];
 
@@ -35,26 +35,14 @@ namespace Perceptron
                         entradas[i + 1] = padroes[k, i];
                     }
 
-                    int valorY= Y(entradas);
+                    int valorY = Y(entradas);
 
-                    for (int i = 1; i <= quantidadeEntradas; i++)
-                    {
-                        Console.Write("E" + i +": " + entradas[i] + "\t");
-                    }
-
-                    Console.Write("Y:" + valorY + " ---> " + desejado[k] + "\n");
-
-                    for (int i = 1; i <= quantidadeEntradas; i++)
-                    {
-                        Console.Write("W" + i + ": " + Pesos[i] + "\t");
-                    }
-
-                    Console.Write("\n\n");
+                    //print(valorY, entradas, desejado, k);
 
                     treinou = valorY == desejado[k] ? true : false;
                     float erro = desejado[k] - valorY;
-                                        
-                    if(erro != 0)
+
+                    if (erro != 0)
                     {
                         for (int i = 0; i <= quantidadeEntradas; i++)
                         {
@@ -64,17 +52,40 @@ namespace Perceptron
                         k = -1;
                         Console.WriteLine("-------- PESOS RECALCULADOS ---------");
                     }
-                        
-                }          
-                
+
+                }
+
                 Console.WriteLine("------- FIM ITERACAO ----------");
             }
             Console.WriteLine("GG");
         }
 
-        private int Y(int[] entradas)
+        private void print(int valorY, int[] entradas, int[] desejado, int k)
         {
+            for (int i = 0; i <= quantidadeEntradas; i++)
+            {
+                Console.Write("E" + i + ":" + entradas[i] + "\t");
+            }
+
+            Console.Write("Y:" + valorY + " ---> " + desejado[k] + "\n");
+
+            for (int i = 0; i <= quantidadeEntradas; i++)
+            {
+                Console.Write("W" + i + ":" + Pesos[i] + "\t");
+            }
+
+            Console.Write("\n\n");
+        }
+
+        public int Y(int[] entradas)
+        {
+            Console.WriteLine("TREINAMENTO");
             return Somatorio(entradas) > 0 ? 1 : 0;
+        }
+
+        public int Y(int[] entradas, float[] pesos)
+        {
+            return Somatorio(entradas, pesos) > 0 ? 1 : 0;
         }
 
         private float Somatorio(int[] entradas)
@@ -85,6 +96,19 @@ namespace Perceptron
             for (int i = 0; i < entradas.Length; i++)
             {
                 soma += entradas[i] * Pesos[i];
+            }
+
+            return soma;
+        }
+
+        private float Somatorio(int[] entradas, float[] pesos)
+        {
+            float soma = 0;
+            entradas[0] = 1;
+
+            for (int i = 0; i < entradas.Length; i++)
+            {
+                soma += entradas[i] * pesos[i];
             }
 
             return soma;
