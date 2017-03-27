@@ -54,7 +54,9 @@ namespace Teste
                                 1,
                                 0
                              };
+
             perceptronA.Treinar(A, desejadoA, 0.2f);
+
             Console.ReadKey();
 
             Console.WriteLine("##### T #####");

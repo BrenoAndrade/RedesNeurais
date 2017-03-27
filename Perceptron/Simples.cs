@@ -16,7 +16,7 @@ namespace Perceptron
         public Simples(int quantidadeEntradas)
         {
             this.quantidadeEntradas = quantidadeEntradas;
-            this.Pesos = new float[quantidadeEntradas + 1];
+            this.Pesos = new float[this.quantidadeEntradas + 1];
             this.treinou = false;
 
             GerarPesos();
@@ -26,7 +26,7 @@ namespace Perceptron
         {
             while (!treinou)
             {
-                for (int k = 0; k <= 4; k++) //AND
+                for (int k = 0; k <= quantidadeEntradas - 1; k++) 
                 {
                     int[] entradas = new int[quantidadeEntradas + 1];
 
@@ -37,7 +37,7 @@ namespace Perceptron
 
                     int valorY = Y(entradas);
 
-                    //print(valorY, entradas, desejado, k);
+                    print(valorY, entradas, desejado, k);
 
                     treinou = valorY == desejado[k] ? true : false;
                     float erro = desejado[k] - valorY;
@@ -79,7 +79,6 @@ namespace Perceptron
 
         public int Y(int[] entradas)
         {
-            Console.WriteLine("TREINAMENTO");
             return Somatorio(entradas) > 0 ? 1 : 0;
         }
 
