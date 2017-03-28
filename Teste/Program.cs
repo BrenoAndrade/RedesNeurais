@@ -55,8 +55,8 @@ namespace Teste
                              };
 
             int[] desejadoAouT = {
-                                1,
-                                0
+                                0,
+                                1
                              };
 
             perceptronAouT.Treinar(AouT, desejadoAouT, 0.2f);
