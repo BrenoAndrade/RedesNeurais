@@ -6,8 +6,7 @@ namespace Perceptron
     public class Simples
     {
         private Random NumeroAleatorio = new Random();
-        public float[] Pesos;
-
+        public float[] Pesos;  
         private int quantidadeEntradas;
         private int min = -1;
         private int max = 1;
@@ -26,7 +25,7 @@ namespace Perceptron
         {
             while (!treinou)
             {
-                for (int k = 0; k <= quantidadeEntradas - 1; k++) 
+                for (int k = 0; k < desejado.Length; k++) 
                 {
                     int[] entradas = new int[quantidadeEntradas + 1];
 
@@ -62,16 +61,36 @@ namespace Perceptron
 
         private void print(int valorY, int[] entradas, int[] desejado, int k)
         {
-            for (int i = 0; i <= quantidadeEntradas; i++)
+            for (int i = 1; i <= quantidadeEntradas; i++)
             {
-                Console.Write("E" + i + ":" + entradas[i] + "\t");
+                if ((i-1) % 5 == 0)
+                    Console.WriteLine();
+
+                if(i < 10)
+                    Console.Write("E " + i + ":" + entradas[i] + "\t");
+                else
+                    Console.Write("E" + i + ":" + entradas[i] + "\t");
             }
 
-            Console.Write("Y:" + valorY + " ---> " + desejado[k] + "\n");
+            Console.Write("Y:" + valorY + " ---> " + desejado[k] + "\n\n");
 
             for (int i = 0; i <= quantidadeEntradas; i++)
             {
-                Console.Write("W" + i + ":" + Pesos[i] + "\t");
+                if (i < 10)
+                {
+                    if(Pesos[i] > 0)
+                        Console.Write("W " + i + ": " + Pesos[i] + "\t");
+                    else
+                        Console.Write("W " + i + ":" + Pesos[i] + "\t");
+                }
+                else
+                {
+                    if (Pesos[i] > 0)
+                        Console.Write("W" + i + ": " + Pesos[i] + "\t");
+                    else
+                        Console.Write("W" + i + ":" + Pesos[i] + "\t");
+                }
+                    
             }
 
             Console.Write("\n\n");

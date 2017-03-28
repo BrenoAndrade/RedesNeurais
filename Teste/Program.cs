@@ -13,8 +13,6 @@ namespace Teste
         {
             Console.WriteLine("##### AND #####");
             Simples perceptronAND = new Simples(2);
-            Simples perceptronA = new Simples(5);
-            Simples perceptronT = new Simples(5);
 
             int[,] padroes = {
                                 {0, 0},
@@ -33,50 +31,35 @@ namespace Teste
            
 
             perceptronAND.Treinar(padroes, desejado, 0.2f);
+            Console.WriteLine("Precione enter para continuar!!!!!!!");
             Console.ReadKey();
 
             //###################### TESTES ##############################
+            
+            Console.WriteLine("##### A ou T #####");
 
-            Console.WriteLine("##### A #####");
+            Simples perceptronAouT = new Simples(25);
 
-            int[,] A =       {
-                                {1, 1, 1, 1, 1},
-                                {1, 0, 0, 0, 1},
-                                {1, 0, 0, 0, 1},
-                                {1, 1, 1, 1, 1},
-                                {1, 0, 0, 0, 1}
+            int[,] AouT =   {
+                                {1, 1, 1, 1, 1,
+                                 1, 0, 0, 0, 1,
+                                 1, 0, 0, 0, 1,
+                                 1, 1, 1, 1, 1,
+                                 1, 0, 0, 0, 1},
+                                
+                                {1, 1, 1, 1, 1,
+                                 0, 0, 1, 0, 0,
+                                 0, 0, 1, 0, 0,
+                                 0, 0, 1, 0, 0,
+                                 0, 0, 1, 0, 0}       
                              };
 
-            int[] desejadoA = {
-                                1,
-                                0,
-                                0,
+            int[] desejadoAouT = {
                                 1,
                                 0
                              };
 
-            perceptronA.Treinar(A, desejadoA, 0.2f);
-
-            Console.ReadKey();
-
-            Console.WriteLine("##### T #####");
-
-            int[,] T =       {
-                                {1, 1, 1, 1, 1},
-                                {0, 0, 1, 0, 0},
-                                {0, 0, 1, 0, 0},
-                                {0, 0, 1, 0, 0},
-                                {0, 0, 1, 0, 0}
-                             };
-
-            int[] desejadoT = {
-                                1,
-                                0,
-                                0,
-                                0,
-                                0
-                             };
-            perceptronT.Treinar(T, desejadoT, 0.2f);
+            perceptronAouT.Treinar(AouT, desejadoAouT, 0.2f);
             Console.ReadKey();
         }
     }
