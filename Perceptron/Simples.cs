@@ -48,8 +48,8 @@ namespace Perceptron
                             Pesos[i] = Pesos[i] + eta * erro * entradas[i];
                         }
                         treinou = false;
-                        k = -1;
-                        Console.WriteLine("-------- PESOS RECALCULADOS ---------");
+                        
+                        //Console.WriteLine("-------- PESOS RECALCULADOS ---------");
                     }
 
                 }
@@ -98,12 +98,7 @@ namespace Perceptron
 
         public int Y(int[] entradas)
         {
-            return Somatorio(entradas) > 0 ? 1 : 0;
-        }
-
-        public int Y(int[] entradas, float[] pesos)
-        {
-            return Somatorio(entradas, pesos) > 0 ? 1 : 0;
+            return Somatorio(entradas) >= 0 ? 1 : 0;
         }
 
         private float Somatorio(int[] entradas)
@@ -113,20 +108,7 @@ namespace Perceptron
 
             for (int i = 0; i < entradas.Length; i++)
             {
-                soma += entradas[i] * Pesos[i];
-            }
-
-            return soma;
-        }
-
-        private float Somatorio(int[] entradas, float[] pesos)
-        {
-            float soma = 0;
-            entradas[0] = 1;
-
-            for (int i = 0; i < entradas.Length; i++)
-            {
-                soma += entradas[i] * pesos[i];
+                soma += entradas[i] * this.Pesos[i];
             }
 
             return soma;
